@@ -31,21 +31,21 @@ body{
   min-height:100vh;
   margin:0;
   color:white;
-  overflow:hidden;
   position:relative;
+  overflow-y:auto;     /* ✅ SCROLL ENABLE */
 }
 
-/* 🔥 REAL IMAGE BLUR BACKGROUND */
+/* 🔥 BLUR BACKGROUND */
 .bg-blur{
   position:fixed;
   inset:0;
   background:url("https://xplearn.site/wp-content/uploads/2026/01/A-stadium-🏟️.jpg") center/cover no-repeat;
-  filter:blur(10px);          /* 👈 MAIN BLUR */
-  transform:scale(1.15);      /* 👈 edges fix */
+  filter:blur(10px);
+  transform:scale(1.15);
   z-index:-2;
 }
 
-/* DARK OVERLAY */
+/* OVERLAY */
 .bg-overlay{
   position:fixed;
   inset:0;
@@ -53,7 +53,7 @@ body{
   z-index:-1;
 }
 
-/* GLASS CARDS */
+/* GLASS CARD */
 .glass-card{
   background:rgba(15,20,40,0.65);
   backdrop-filter:blur(12px);
@@ -62,15 +62,12 @@ body{
 
 /* PROFILE RING */
 .profile-ring{
-  box-shadow:
-    0 0 0 3px rgba(0,242,255,0.5),
-    0 0 0 6px rgba(189,0,255,0.3);
+  box-shadow:0 0 0 3px rgba(0,242,255,0.5),
+             0 0 0 6px rgba(189,0,255,0.3);
 }
 
-/* PULSE CTA */
-.pulse{
-  animation:pulse 2s infinite;
-}
+/* PULSE */
+.pulse{animation:pulse 2s infinite}
 @keyframes pulse{
   0%{box-shadow:0 0 0 0 rgba(0,242,255,.4)}
   70%{box-shadow:0 0 0 15px rgba(0,242,255,0)}
@@ -93,13 +90,13 @@ body{
 </style>
 </head>
 
-<body class="flex items-center justify-center p-4">
+<body class="p-4">
 
 <!-- BACKGROUND -->
 <div class="bg-blur"></div>
 <div class="bg-overlay"></div>
 
-<div class="container max-w-md mx-auto">
+<div class="container max-w-md mx-auto pb-24">
 
 <!-- PROFILE -->
 <div class="flex flex-col items-center mb-8 pt-6">
@@ -161,23 +158,15 @@ class="w-full bg-gradient-to-r from-electric-500 to-neon-500 text-white font-bol
 <div class="grid gap-4">
   <div class="glass-card p-5 rounded-xl">
     <h3 class="font-bold mb-1">Cricket Match Analysis 🏏</h3>
-    <p class="text-sm text-gray-300">
-      Pitch report, team form & player stats before every match.
-    </p>
+    <p class="text-sm text-gray-300">Pitch report & team stats.</p>
   </div>
-
   <div class="glass-card p-5 rounded-xl">
     <h3 class="font-bold mb-1">Tennis Match Insights 🎾</h3>
-    <p class="text-sm text-gray-300">
-      Surface-based analysis with fitness & H2H data.
-    </p>
+    <p class="text-sm text-gray-300">Surface & fitness based analysis.</p>
   </div>
-
   <div class="glass-card p-5 rounded-xl">
     <h3 class="font-bold mb-1">Live Match Updates 🔔</h3>
-    <p class="text-sm text-gray-300">
-      Instant alerts during live match momentum changes.
-    </p>
+    <p class="text-sm text-gray-300">Instant momentum alerts.</p>
   </div>
 </div>
 
@@ -194,15 +183,14 @@ class="w-full bg-gradient-to-r from-electric-500 to-neon-500 text-white font-bol
 <script>
 feather.replace();
 
-/* 1 MIN TIMER */
-let t = 60;
-const m = document.getElementById("min");
-const s = document.getElementById("sec");
-
+/* TIMER */
+let t=60;
+const m=document.getElementById("min");
+const s=document.getElementById("sec");
 setInterval(()=>{
-  m.innerText = String(Math.floor(t/60)).padStart(2,"0");
-  s.innerText = String(t%60).padStart(2,"0");
-  if(t>0) t--;
+  m.innerText=String(Math.floor(t/60)).padStart(2,"0");
+  s.innerText=String(t%60).padStart(2,"0");
+  if(t>0)t--;
 },1000);
 
 /* ANIMATION */
